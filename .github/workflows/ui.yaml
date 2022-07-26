@@ -1,0 +1,35 @@
+name: HCL OneTest UI
+
+on:
+    workflow_dispatch:
+        inputs:
+            projectDir:
+                description: 'Project Directory'
+                required: true
+            suite:
+                description: 'Test Suite Name'
+                required: true
+            logFormat:
+                description: 'Log Format'
+                required: false
+            userArgs:
+                description: 'User Arguments'
+                required: false
+            iterCount:
+                description: 'Iteration Count'
+                required: false
+
+jobs:
+
+    UI-Action:
+        runs-on: self-hosted
+        name: HCL OneTest UI
+        steps:
+         - name: Execute Test
+           uses: SonaHJ/TraditionalUIAction@main
+           with:
+            projectDir: '${{ github.event.inputs.projectDir }}'
+            suite: '${{ github.event.inputs.suite }}'
+            logFormat: '${{ github.event.inputs.logFormat }}'
+            userArgs: '${{ github.event.inputs.userArgs }}'
+            iterCount: '${{ github.event.inputs.iterCount }}'
